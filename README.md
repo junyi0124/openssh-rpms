@@ -9,7 +9,7 @@ For some reasons I have to maintain OpenSSH up to date for CentOS which no longe
 ## Current Version:
 
 - OpenSSH 9.5p1
-- OpenSSL 3.0.11 (static linked)
+- OpenSSL 3.0.12 (static linked)
 
 The build script reads `version.env` for actual version definitions.
 

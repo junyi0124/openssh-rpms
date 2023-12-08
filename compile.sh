@@ -23,6 +23,9 @@ rpmtopdir="${1:-}"
 if [[ -z $rpmtopdir ]]; then
     VAREL=$(rpm --eval '%{?dist}')
     case $VAREL in
+        .el8)
+            rpmtopdir=el7
+            ;;
         .el7)
             rpmtopdir=el7
             ;;
@@ -37,7 +40,7 @@ if [[ -z $rpmtopdir ]]; then
             fi
             ;;
         *)
-            echo "rpm dist undefined, please specify: el5 el6 el7"
+            echo "rpm dist undefined, please specify: el5 el6 el7 el8"
             exit 1
             ;;
     esac
