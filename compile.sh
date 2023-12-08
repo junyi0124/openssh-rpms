@@ -24,7 +24,7 @@ if [[ -z $rpmtopdir ]]; then
     VAREL=$(rpm --eval '%{?dist}')
     case $VAREL in
         .el8)
-            rpmtopdir=el7
+            rpmtopdir=el8
             ;;
         .el7)
             rpmtopdir=el7
@@ -48,7 +48,7 @@ fi
 
 
 if [[ ! -d $rpmtopdir ]]; then 
-  echo "only work in el5/el6/el7"
+  echo "only work in el5/el6/el7/el8"
   echo "eg: ${0} el7"
   exit 1
 fi

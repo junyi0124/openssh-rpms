@@ -20,10 +20,12 @@
 %global aversion 1.2.4.1
 
 # Do we want to disable building of x11-askpass? (1=yes 0=no)
-%global no_x11_askpass 0
+#%global no_x11_askpass 0
+%global no_x11_askpass 1
 
 # Do we want to disable building of gnome-askpass? (1=yes 0=no)
-%global no_gnome_askpass 0
+#%global no_gnome_askpass 0
+%global no_gnome_askpass 1
 
 # Do we want to link against a static libcrypto? (1=yes 0=no)
 %global static_libcrypto 0
@@ -241,6 +243,7 @@ export LD_LIBRARY_PATH="%{openssl_dir}"
 	--with-privsep-path=%{_var}/empty/sshd \
 	--with-md5-passwords \
 	--mandir=%{_mandir} \
+  --with-openssl-includes=/usr/include/openssl
 	--with-mantype=man \
 	--disable-strip \
 	--with-ssl-dir="%{openssl_dir}" \
@@ -365,6 +368,8 @@ fi
 
 %post server
 /sbin/chkconfig --add sshd
+chmod 600 /etc/ssh/ssh_host*
+systemctl restart sshd
 
 %postun server
 /sbin/service sshd condrestart > /dev/null 2>&1 || :
